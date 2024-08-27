@@ -6,34 +6,29 @@ import { Grid, TextField, Button } from '@mui/material';
 import { setUserDetails, updateUserPreferences } from '../../redux/slices/userSlice';
 
 const UserProfile = () => {
-    // CORRECT: Local state for form inputs
     const [formInputs, setFormInputs] = useState({
         name: '',
         email: '',
         bio: ''
     });
 
-    // INCORRECT: Using local state for data that should be in Redux
-    const [userPreferences, setUserPreferences] = useState({
-        theme: 'light',
-        notifications: true
-    });
-
-    // CORRECT: Redux usage
     const dispatch = useDispatch();
     const userDetails = useSelector((state) => state.user.details);
-    const globalUserPreferences = useSelector((state) => state.user.preferences);
-
-    // INCORRECT: Disabling eslint warning without proper justification
-    // eslint-disable-next-line
-    const unusedVariable = useSelector((state) => state.user.someUnusedState);
+    const userPreferences = useSelector((state) => state.user.preferences);
 
     useEffect(() => {
-        // Simulating API call to fetch user details
         const fetchUserDetails = async () => {
-            // ... fetch logic
-            const userData = { name: 'John Doe', email: 'john@example.com', bio: 'Web developer' };
-            dispatch(setUserDetails(userData));
+            try {
+                const response = await fetch('/api/user-details');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user details');
+                }
+                const userData = await response.json();
+                dispatch(setUserDetails(userData));
+            } catch (error) {
+                console.error('Error fetching user details:', error);
+                // Handle error appropriately (e.g., show error message to user)
+            }
         };
         fetchUserDetails();
     }, [dispatch]);
@@ -44,9 +39,6 @@ const UserProfile = () => {
 
     const handleSubmit = () => {
         dispatch(setUserDetails(formInputs));
-        // INCORRECT: Updating local state instead of Redux
-        setUserPreferences({ ...userPreferences, theme: 'dark' });
-        // CORRECT: Updating Redux state
         dispatch(updateUserPreferences({ theme: 'dark' }));
     };
 

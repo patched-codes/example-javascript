@@ -38,13 +38,13 @@ const DashboardLayout = () => {
     const IncorrectLayoutExample = () => (
         <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-                <Paper style={{ padding: '1rem' }}>
+                <Paper sx={{ padding: '1rem' }}>
                     <Typography variant="h6">Sidebar</Typography>
                     {/* Sidebar content */}
                 </Paper>
             </Grid>
             <Grid item xs={12} md={8}>
-                <Paper style={{ padding: '1rem' }}>
+                <Paper sx={{ padding: '1rem' }}>
                     <Typography variant="h6">Main Content</Typography>
                     {/* Main content */}
                 </Paper>

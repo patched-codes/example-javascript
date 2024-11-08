@@ -1,0 +1,51 @@
+<rules>
+	<description>Do not add new libraries to package.json.</description>
+</rules>
+<rules>
+	<description>Do not use class components; use only functional components.</description>
+</rules>
+<rules>
+	<description>Do not leave commented code in the codebase. Informational comments are allowed.</description>
+</rules>
+<rules>
+	<description>Do not use Console.log statements.</description>
+</rules>
+<rules>
+	<description>Do not use incorrect casing for components, routes, and pages.</description>
+	<example>
+		<correct>CatalogueIndex.js</correct>
+		<wrong>catalogueIndex.js</wrong>
+	</example>
+</rules>
+<rules>
+	<description>Do not use incorrect casing for variables and functions</description>
+</rules>
+<rules>
+	<example>
+		<correct>saveProfileModalIsOpen, openStateSaveProfileModal, isSaveProfileModalOpen</correct>
+		<wrong>Is-Open, is_open, isOpen</wrong>
+	</example>
+</rules>
+<rules>
+	<description>Do not use state management methods other than useState and Redux.</description>
+	<example>
+		<correct>const [isSaveProfileModalOpen, setIsSaveProfileModalOpen] = useState(false); const dispatch = useDispatch(); const Button = useSelector((state) => state.nav.Button); dispatch(setButton(buttons[0]));</correct>
+	</example>
+</rules>
+<rules>
+	<description>Do not use UI libraries other than MaterialUI.</description>
+</rules>
+<rules>
+	<description>Do not use the container and item layout model. Instead, use display flex and flex properties within the sx part of a Grid tag.</description>
+	<example>
+		<wrong>
+			&lt;Grid container xs={6} md={12}&gt;&lt;Grid item&gt;
+        </wrong>
+        <correct>
+            &lt;Grid sx={{display: &quot;flex&quot;, flexDirection: &quot;row&quot;, width: isMobile ? &quot;50%&quot; : &quot;100%&quot;}}&gt;&lt;/Grid&gt;
+        </correct>
+    </example>
+</rules>
+<rules>
+    <description>Do not hard code or push any secret, API key, SSH key, or any sensitive information.</description>
+</rules>
